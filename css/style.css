@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+.textRed
+{
+	color:#FF0000;
+}
+
+#textBold
+{
+	font-weight: bold;
+}
+span
+{
+	font-weight: bold;
+}
+
+
+#textId2
+{
+	font-size: 15px;
+}
+.textClass2
+{
+	font-size: 25px;
+}
+
+#idElem #textId3
+{
+	font-size: 15px;
+}
+#idElem p
+{
+	font-size: 25px;
+}
+
+
+#idElem2 .textId3
+{
+	font-size: 15px;
+}
+#idElem2 p
+{
+	font-size: 25px;
+}
+
+
+#idElem3 .textClass4
+{
+	font-size: 15px;
+}
+#idElem4 .textClass4
+{
+	font-size: 25px;
+}
+
+#idElem5 p
+{
+	font-size: 15px;
+	color:#FF0000;
+}
+#idElem6 p
+{
+	font-size: 25px;
+	color:#dddddd;
+}
+
+
+p.textClass5
+{
+	font-size: 15px;
+	color:#FF0000;
+}
+div.textClass5
+{
+	font-size: 25px;
+	color:#dddddd;
+}

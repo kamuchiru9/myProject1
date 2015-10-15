@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<title>ホバーの画像</title>
+	<meta name="keywords" content="■■■■■■■■■■">
+	<meta name="description" content="■■■■■■■■■■">
+	<link rel="stylesheet" type="text/css" href="../cmn/css/reset.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="../cmn/css/style.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="./css/style.css" media="all" />
+	<!--#include virtual="../cmn/include/head.html" -->
+
+	<script src="./js/module.js" charset="UTF-8"></script>
+
+</head>
+<body>
+	<div id="container">
+
+		<!--#include virtual="../cmn/include/header.html" -->
+
+		<div id="contents" class="clearfix">
+			<!--#include virtual="../cmn/include/side.html" -->
+			<div id="content">
+				<h1>ホバーでさぁ、画像切り替えとかしたいよね</h1>
+				<section class="mb30">
+					<p>
+						画像リンクとか特にですが、ホバーして画像を切り替えたりなんやかんやすると思うんです。<br />
+						そんな時にどう考えるのか。を改めて
+					</p>
+				</section>
+				<section>
+					<h2>手法はいくつ？</h2>
+
+					<ul class="mb20">
+						<li>・画像自体を切り替える</li>
+						<li>・画像自体の透明度を変える</li>
+					</ul>
+
+					<h2 class="mb20">画像自体を切り替える</h2>
+					<p class="mb20">
+						別物の画像に切り替える場合はこの手法です。<br />
+						で、JSを組む前に重要なのが画像の命名規則<br />
+						例えば、XXX.jpgがあるとすればXXX_o.jpg とか XXX_on.jpgとか<br />
+						大事なのはとある場所のとある文字を差し替えれば画像が変わるようにする事です。
+					</p>
+
+					<h3 class="mb20">と言うわけで実装してみます。</h3>
+					<div class="mb20">
+						<a href="http://google.com"><img src="./img/test.jpg" width="100" height="100" class="imgover"></a>
+					</div>
+
+<pre class="mb20">$('.imgover').hover(function()
+{
+ var srcData = $(this).attr('src');
+ srcData = srcData.replace(/(\.gif|\.jpg|\.png)/g,'_o$1');
+ $(this).attr('src',srcData);
+},
+function()
+{
+ var srcData = $(this).attr('src');
+ srcData = srcData.replace('_o','');
+ $(this).attr('src',srcData);
+});
+</pre>
+					<p class="mb20">
+						上記のようにホバーを使っていますね。<br />
+						んで、srcを抜き取って、置換しているわけです。<br />
+						正規表現で３パターン用意しているので、どの拡張子の画像でもうまいことやってくれます。<br />
+						<br />
+						マウスアウトした段階で、付与した【_o】を消して元の画像に戻しているんですね！
+					</p>
+
+					<h3 class="mb20">大事な事その１</h3>
+					<p class="mb20">
+						これは汎用的に使うものです。なので、クラス指定をしてあげましょう。<br />
+						また、余分な処理を付け加えたくないので、img要素に対してクラスを付与してあげます。
+					</p>
+					<h3 class="mb20">大事な事その２</h3>
+					<p class="mb20">
+						この手法だと、別の画像が２つ必要になる事になります。<br />
+						ホバーしてもその画像が読み込まれていない等、重いサイトの場合は特に要注意です。<br />
+						その場合は大人しくプリロード(画像先読み)をしてあげておくとOKです。
+					</p>
+
+					<h2 class="mb20">画像の透明度を切り替える</h2>
+					<p class="mb20">
+						続いて行うのは、画像の透明度を切り替える手法です。<br />
+						こちらは目立った変化という視点では劣りますが、使用する画像は１枚のみとなります。
+					</p>
+
+					<h3 class="mb20">早速実装してみる</h3>
+					<div class="mb20">
+						<a href="http://google.com"><img src="./img/test.jpg" width="100" height="100" class="imgover2"></a>
+					</div>
+
+<pre class="mb20">$('.imgover2').hover(function()
+{
+ $(this).css('opacity','0.7');
+},
+function()
+{
+ $(this).css('opacity','1');
+});
+</pre>
+					<p class="mb20">
+						超シンプル。CSSで透明度を変化させているダケですね。<br />
+						特に他言うことはありません。
+					</p>
+
+
+
+				</section>
+			</div>
+		</div>
+
+		<!--#include virtual="../cmn/include/foot.html" -->
+
+
+	</div>
+</body>
+</html>
